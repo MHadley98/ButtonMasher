@@ -11,6 +11,7 @@ public class ButtonMasher : MonoBehaviour {
     public float gameLength;//How many seconds the game lasts
     public AudioSource gameOverSound;//sound when game ends
     public TextMesh messageText;//Display message text to the player
+    public AudioSource startSound;//sound plays when game starts
 
     private int score=0;//Numerical data value of our score
     private float timeRemaining = 0;//Numerical time remaining value
@@ -26,8 +27,6 @@ public class ButtonMasher : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log("Whoooooooooooooooooooooooooooooooop");
-
         //Update the numerical time remaining
         timeRemaining = timeRemaining - Time.deltaTime;
         //Update the visual time remaining
@@ -79,6 +78,12 @@ public class ButtonMasher : MonoBehaviour {
 
             //reset the score
             score = 0;
+
+            //update visual score
+            ScoreText.text = score.ToString();
+
+            //play start sound
+            startSound.Play();
 
         }//end of else (gameRunning == true)
 
