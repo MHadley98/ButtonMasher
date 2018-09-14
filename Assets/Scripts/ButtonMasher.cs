@@ -14,13 +14,13 @@ public class ButtonMasher : MonoBehaviour {
 
     private int score=0;//Numerical data value of our score
     private float timeRemaining = 0;//Numerical time remaining value
-    private bool gameRunning = true;
+    private bool gameRunning = false;
 
     // Use this for initialization
     void Start () {
         Debug.Log("Start method called");
 
-        timeRemaining = gameLength;
+        
 
 	}//End of Start()
 	
@@ -45,6 +45,7 @@ public class ButtonMasher : MonoBehaviour {
                 //show th eplayer their score
                 messageText.text = "Time up! Final Score= " + score.ToString();
             }//end of if (gameRunning == true)
+
             //stop timer
             gameRunning = false;
             //stop game running
@@ -67,6 +68,19 @@ public class ButtonMasher : MonoBehaviour {
             //update visual score
             ScoreText.text = score.ToString();
         }//end of if(gameRunning == true)
+        else
+        {
+            //game is not running and button pressed
+            gameRunning = true;
+            //set the timer to full length of game
+            timeRemaining = gameLength;
+
+            messageText.text = "Mash the button!";
+
+            //reset the score
+            score = 0;
+
+        }//end of else (gameRunning == true)
 
     }//End of OnMouseDown
 
