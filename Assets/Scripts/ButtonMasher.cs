@@ -9,6 +9,8 @@ public class ButtonMasher : MonoBehaviour {
     public TextMesh ScoreText;//Display for player's score
     public TextMesh TimerText;//Display for timer
     public float gameLength;//How many seconds the game lasts
+    public AudioSource gameOverSound;//sound when game ends
+    public TextMesh messageText;//Display message text to the player
 
     private int score=0;//Numerical data value of our score
     private float timeRemaining = 0;//Numerical time remaining value
@@ -34,6 +36,15 @@ public class ButtonMasher : MonoBehaviour {
         //check if time has run out
         if(timeRemaining<=0)
         {
+            //only do if gameover is just hit
+            if (gameRunning == true)
+            {
+                //Play gameoversound
+                gameOverSound.Play();
+
+                //show th eplayer their score
+                messageText.text = "Time up! Final Score= " + score.ToString();
+            }//end of if (gameRunning == true)
             //stop timer
             gameRunning = false;
             //stop game running
